@@ -13,6 +13,8 @@ export const Header = styled.header`
     height: 40px;
     background-color: #000;
     color: #fff;
+    display: flex;
+    align-items: center;
 `;
 
 export const Footer = styled.footer`
