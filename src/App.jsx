@@ -6,6 +6,7 @@ import { lazy, Suspense } from 'react';
 import { Box, CircularProgress } from '@mui/material';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ScrollToTop from './components/ScrollToTop';
 
 const Home = lazy(() => import('./pages/home'));
 const Projects = lazy(() => import('./pages/projects'));
@@ -14,6 +15,7 @@ const NotFound = lazy(() => import('./pages/notFound'));
 const App = () => {
     return (
         <>
+            <ScrollToTop />
             <Header />
             <Main>
                 <Suspense fallback={<Box sx={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}><CircularProgress /></Box>}>

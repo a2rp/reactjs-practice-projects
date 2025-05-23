@@ -16,6 +16,12 @@ export const Wrapper = styled.header`
 
     .name {
         padding: 15px;
+        color: #fff;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
     }
     .menu_link {
         /* border: 1px solid #f00; */

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Nav, Wrapper } from './styled'
 import { IoMenu } from "react-icons/io5";
-import { useNavigate } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
 import { projectList } from '../../data/projectList';
 
 const Header = () => {
@@ -30,9 +30,9 @@ const Header = () => {
     return (
         <>
             <Wrapper>
-                <div className='name'>
+                <NavLink to="/" className='name'>
                     ReactJS Practice Projects
-                </div>
+                </NavLink>
                 <div className='menu_link' onClick={handleMenuClick}>
                     <IoMenu size={25} />
                 </div>
