@@ -1,11 +1,7 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-    position: relative;
-    height: 100vh;
-`;
-
-export const Header = styled.header`
+export const Wrapper = styled.header`
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     position: fixed;
     top: 0;
     left: 0;
@@ -16,6 +12,7 @@ export const Header = styled.header`
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 9999;
 
     .name {
         padding: 15px;
@@ -59,6 +56,21 @@ export const Nav = styled.nav`
         align-items: center;
         justify-content: center;
         align-items: center;
+        white-space: nowrap;
+        overflow: hidden;
+        min-width: 30px;
+
+        span {
+            transition: transform 0.2s ease;
+            display: inline-block;
+        }
+
+        @media (width<500px) {
+            span {
+                transform: rotate(-90deg);
+                white-space: nowrap;
+            }
+        }
     }
     .menuWrapper {
         border-left: 1px solid rgba(255, 255, 255, 0.3);
@@ -77,41 +89,6 @@ export const Nav = styled.nav`
             &:hover {
                 background-color: #222;
             }
-        }
-    }
-`;
-
-export const Main = styled.main`
-    /* border: 1px solid rgba(255, 255, 255, 0.1); */
-    border-bottom: none;
-    max-width: 1440px;
-    margin: auto;
-    min-height: 100vh;
-    padding: 100px 50px;
-    color: #fff;
-    background-color: rgb(24, 24, 24);
-
-    @media (width<500px) {
-        padding: 14vh 15px;
-    }
-`;
-
-export const Footer = styled.footer`
-    /* height: 30px; */
-    padding: 15px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 50px;
-    flex-wrap: wrap;
-    background-color: #000;
-    color: #fff;
-
-    a {
-        color: aqua;
-
-        &:hover {
-            text-decoration: none;
         }
     }
 `;
