@@ -50,7 +50,7 @@ const Header = () => {
                             className="item"
                             key={index}
                             onClick={() => {
-                                navigate(`/project/${item.name}`);
+                                navigate(`/project/${item.uri}`);
                                 setDisplayMenu(false);
                             }}
                         >
