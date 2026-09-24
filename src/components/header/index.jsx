@@ -1,66 +1,45 @@
-import React, { useEffect, useState } from 'react'
-import { Nav, Wrapper } from './styled'
+import React, { useEffect, useState } from "react";
 import { IoMenu } from "react-icons/io5";
-import { NavLink, useNavigate } from 'react-router-dom';
-import { projectList } from '../../data/projectList';
+import { NavLink, useNavigate } from "react-router-dom";
+import { projectList } from "../../data/projectList";
+import { Nav, Wrapper } from "./styled";
 
 const Header = () => {
     const navigate = useNavigate();
     const [displayMenu, setDisplayMenu] = useState(false);
 
     useEffect(() => {
-        if (displayMenu) {
-            document.body.style.overflow = 'hidden';
-            document.body.style.paddingRight = '25px';
-        } else {
-            const timeout = setTimeout(() => {
-                document.body.style.overflow = 'auto';
-            }, 1000 * 0.2);
-
-            return () => clearTimeout(timeout);
-        }
+        document.body.style.overflow = displayMenu ? "hidden" : "auto";
+        document.body.style.paddingRight = displayMenu ? "0px" : "";
+        return () => {
+            document.body.style.overflow = "auto";
+            document.body.style.paddingRight = "";
+        };
     }, [displayMenu]);
-
-
-    const handleMenuClick = () => {
-        setDisplayMenu(displayMenu => !displayMenu);
-    };
-
 
     return (
         <>
             <Wrapper>
-                <NavLink to="/" className='name'>
-                    ReactJS Practice Projects
+                <NavLink to="/" className="name" aria-label="ReactJS Practice Projects home">
+                    <img src={`${import.meta.env.BASE_URL}logo.png`} alt="Ashish Ranjan logo" />
+                    <span>ReactJS Practice Projects</span>
                 </NavLink>
-                <div className='menu_link' onClick={handleMenuClick}>
-                    <IoMenu size={25} />
-                </div>
+                <button className="menu_link" type="button" onClick={() => setDisplayMenu((open) => !open)} aria-label={displayMenu ? "Close project menu" : "Open project menu"} title={displayMenu ? "Close project menu" : "Open project menu"}>
+                    <IoMenu size={25} aria-hidden="true" />
+                </button>
             </Wrapper>
-
-            <Nav className={`${displayMenu ? "active" : ""}`}>
-                <div className="emptySection" onClick={handleMenuClick}>
-                    <span>
-                        {/* click here to close */}
-                    </span>
-                </div>
+            <Nav className={displayMenu ? "active" : ""}>
+                <button className="emptySection" type="button" onClick={() => setDisplayMenu(false)} aria-label="Close project menu" />
                 <div className="menuWrapper">
-                    {projectList.map((item, index) => (
-                        <div
-                            className="item"
-                            key={index}
-                            onClick={() => {
-                                navigate(`/project/${item.uri}`);
-                                setDisplayMenu(false);
-                            }}
-                        >
+                    {projectList.map((item) => (
+                        <button className="item" type="button" key={item.uri} onClick={() => { navigate(`/project/${item.uri}`); setDisplayMenu(false); }}>
                             {item.displayName}
-                        </div>
+                        </button>
                     ))}
                 </div>
             </Nav>
         </>
-    )
-}
+    );
+};
 
-export default Header
+export default Header;
